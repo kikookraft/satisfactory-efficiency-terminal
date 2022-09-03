@@ -20,7 +20,7 @@ Unfortunately the mod wouldn't connect to the board (idk why) so I used a python
     - You need to modify the port at the line 16 by the port on which is connected the arduino  
     - If you modified the mod webserver port, also change the port at line 28  
     - Line 54 is the list of the items that will be displayed. To get the name of the items, go on [your local webserver page](http://localhost:8080/) and copy some item you want. (if your game is in french you can leave it for testing, for other language this will not work)
-    - Launch the python script (`python main.py` on a tyerminal)
+    - Launch the python script (`python sender.py` on a tyerminal)
 - Install the Ficsit Remote Monitoring mod
 - Launch Satisfactory and join a game (this is not optional)
 - Start the web server by entering `/frmweb start`  
