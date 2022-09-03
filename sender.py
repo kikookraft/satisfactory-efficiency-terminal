@@ -58,11 +58,11 @@ while True:
             # transforming the data so its simpler in the arduino code
             production = prod.split("-")[0][3:-5]
             prod_detail = production.split("/")
-            max_consumed=prod.split("-")[1][3:-5].split("/")[0]
+            consumed=prod.split("-")[1][4:-6].split("/")[0]
             if len(prod_detail) == 1:
                 prod_detail.append(prod_detail[0])
             # making a sub-dict and put it in the main dict
-            d = {"item":item,"prod":{"P":prod_detail[0], "C":max_consumed},"effi":effprod,"current":current}
+            d = {"item":item,"prod":{"P":prod_detail[0], "C":consumed},"effi":effprod,"current":current}
             dd[str(i)]=d
             i+=1
             
