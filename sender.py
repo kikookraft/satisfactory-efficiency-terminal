@@ -23,7 +23,7 @@ while not ard:
     
 def write(x): #the function that is used to send data to the arduino
     arduino.write(bytes(x, 'utf-8'))
-
+server_info = True
 while True:
     url = 'http://localhost:8080/getProdStats' # url on wich the Ficsit Remote Monitoring web server is running
     done = False
@@ -31,7 +31,9 @@ while True:
         try:
             r = requests.get(url)
             done = True
-            print("Server connected!") #remove this line of you dont want your console filling with this message
+            if server_info: 
+                print("Server connected!")
+                server_info = False
             data = json.loads(r.content.decode())
         except:
             print("No connexion to the server...")
@@ -56,11 +58,11 @@ while True:
             # transforming the data so its simpler in the arduino code
             production = prod.split("-")[0][3:-5]
             prod_detail = production.split("/")
+            max_consumed=prod.split("-")[1][3:-5].split("/")[0]
             if len(prod_detail) == 1:
                 prod_detail.append(prod_detail[0])
-            
             # making a sub-dict and put it in the main dict
-            d = {"item":item,"prod":{"P":prod_detail[0], "C":prod_detail[1]},"effi":effprod,"current":current}
+            d = {"item":item,"prod":{"P":prod_detail[0], "C":max_consumed},"effi":effprod,"current":current}
             dd[str(i)]=d
             i+=1
             
